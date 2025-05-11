@@ -41,14 +41,34 @@ VARIABLE_OPTIONS = {
 @st.cache_data
 def load_data():
     """Load and prepare the survey data"""
-    # Get the absolute path to the data file
-    current_dir = Path(__file__).parent
-    data_path = current_dir / "data" / "survey_data.csv"
-    
-    if not data_path.exists():
-        st.error(f"Survey data not found at {data_path}. Please ensure the data file exists.")
+    try:
+        # Get the absolute path to the data file
+        current_dir = Path(__file__).parent
+        data_path = current_dir / "data" / "survey_data.csv"
+        
+        # Debug information
+        st.write("Debug information:")
+        st.write(f"Current directory: {current_dir}")
+        st.write(f"Data path: {data_path}")
+        st.write(f"Data path exists: {data_path.exists()}")
+        st.write(f"Data path is file: {data_path.is_file()}")
+        
+        if not data_path.exists():
+            st.error(f"Survey data not found at {data_path}. Please ensure the data file exists.")
+            return None
+            
+        # Try to read the file
+        try:
+            data = pd.read_csv(data_path)
+            st.write(f"Successfully loaded data with {len(data)} rows")
+            return data
+        except Exception as e:
+            st.error(f"Error reading data file: {str(e)}")
+            return None
+            
+    except Exception as e:
+        st.error(f"Error in load_data: {str(e)}")
         return None
-    return load_survey_data(data_path)
 
 def show_demographic_section(data, category):
     """Display demographic section with plots and tables"""

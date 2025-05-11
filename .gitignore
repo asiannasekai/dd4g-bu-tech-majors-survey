@@ -9,3 +9,23 @@ report/*.md
 report/A0*
 report/*_files/*
 report/report.rds
+
+# Python virtual environment
+python_app/venv/
+__pycache__/
+*.pyc
+
+# IDE files
+.vscode/
+.idea/
+
+# Data files
+*.csv
+*.xlsx
+*.xls
+
+# Logs
+*.log
+
+# OS files
+Thumbs.db

@@ -46,22 +46,13 @@ def load_data():
         current_dir = Path(__file__).parent
         data_path = current_dir / "data" / "survey_data.csv"
         
-        # Debug information
-        st.write("Debug information:")
-        st.write(f"Current directory: {current_dir}")
-        st.write(f"Data path: {data_path}")
-        st.write(f"Data path exists: {data_path.exists()}")
-        st.write(f"Data path is file: {data_path.is_file()}")
-        
         if not data_path.exists():
             st.error(f"Survey data not found at {data_path}. Please ensure the data file exists.")
             return None
             
         # Try to read the file
         try:
-            data = pd.read_csv(data_path)
-            st.write(f"Successfully loaded data with {len(data)} rows")
-            return data
+            return pd.read_csv(data_path)
         except Exception as e:
             st.error(f"Error reading data file: {str(e)}")
             return None

@@ -41,9 +41,12 @@ VARIABLE_OPTIONS = {
 @st.cache_data
 def load_data():
     """Load and prepare the survey data"""
-    data_path = Path("data/survey_data.csv")
+    # Get the absolute path to the data file
+    current_dir = Path(__file__).parent
+    data_path = current_dir / "data" / "survey_data.csv"
+    
     if not data_path.exists():
-        st.error("Survey data not found. Please ensure the data file exists.")
+        st.error(f"Survey data not found at {data_path}. Please ensure the data file exists.")
         return None
     return load_survey_data(data_path)
 

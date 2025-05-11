@@ -19,10 +19,11 @@ __pycache__/
 .vscode/
 .idea/
 
-# Data files
-*.csv
-*.xlsx
-*.xls
+# Data files (exclude from root but keep in python_app/data)
+/*.csv
+/*.xlsx
+/*.xls
+!python_app/data/*.csv
 
 # Logs
 *.log
